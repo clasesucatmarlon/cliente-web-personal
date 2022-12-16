@@ -3,7 +3,7 @@ import React from "react";
 export const Auth = () => {
     return (
         <div>
-            <h1>Authentication</h1>
+            <h1>Estamos en auth</h1>
         </div>
     );
 };
