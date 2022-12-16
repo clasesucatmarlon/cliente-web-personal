@@ -1,10 +1,11 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { Auth } from '../pages/admin'
 
-import { AdminLayout } from '../layouts';
+import { Home } from '../pages/client';
+import { ClientLayout } from '../layouts';
 
-export function AdminRouter() {
+
+export function WebRouter() {
 
     const loadLayout = (Layout, Page) => {
         return (
@@ -16,7 +17,7 @@ export function AdminRouter() {
 
     return (
         <Routes>
-            <Route path='/admin/*' element={loadLayout(AdminLayout, Auth)} />
+            <Route path='/' element={loadLayout(ClientLayout, Home)} />
         </Routes>
     )
 }
