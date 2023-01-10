@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form } from "semantic-ui-react";
 import { useFormik } from "formik";
-import { initialValuesForm } from "./RegisterForm.form";
+import { initialValuesForm, validationSchema } from "./RegisterForm.form";
 import "./RegisterForm.scss";
 
 export function RegisterForm() {
@@ -9,11 +9,15 @@ export function RegisterForm() {
 
   const formik = useFormik({
     initialValues: initialValuesForm(),
+    validationSchema: validationSchema,
+    validateOnChange: false,
     onSubmit: async (formValues) => {
       try {
-        console.log(formValues);
+        // console.log(formValues);
+        setError('');
       } catch (error) {
-        console.error(error);
+        // console.error(error);
+        setError('Server error');
       }
     },
   });
@@ -25,6 +29,7 @@ export function RegisterForm() {
         placeholder="Email"
         onChange={formik.handleChange}
         value={formik.values.email}
+        error={formik.errors.email}
       />
       <Form.Input
         name="password"
@@ -32,6 +37,7 @@ export function RegisterForm() {
         type="password"
         onChange={formik.handleChange}
         value={formik.values.password}
+        error={formik.errors.password}
       />
       <Form.Input
         name="repeatPassword"
@@ -39,6 +45,7 @@ export function RegisterForm() {
         type="password"
         onChange={formik.handleChange}
         value={formik.values.repeatPassword}
+        error={formik.errors.repeatPassword}
       />
       <Form.Checkbox
         name="conditionsAccepted"
@@ -47,6 +54,7 @@ export function RegisterForm() {
           formik.setFieldValue("conditionsAccepted", data.checked)
         }
         checked={formik.values.conditionsAccepted}
+        error={formik.errors.conditionsAccepted}
       />
       <Form.Button type="submit" primary fluid loading={formik.isSubmitting}>
         Create Account
