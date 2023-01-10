@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import { Tab } from "semantic-ui-react";
 import './Auth.scss';
 import logo  from "../../../assets/images/svg/tincode-white.svg" 
+import { RegisterForm } from "../../../components/admin/auth/registerForm/RegisterForm";
 
 export const Auth = () => {
 
     const [activeIndex, setActiveIndex] = useState(1);
 
-    // const openLogin = () => {
-    //     setActiveIndex(0);
-    // };
+    const openLogin = () => {
+        setActiveIndex(0);
+    };
 
     const panes = [
         {
@@ -24,7 +25,7 @@ export const Auth = () => {
             menuItem: "User New",
             render: () => (
                 <Tab.Pane>
-                    <h3>Register Form</h3>
+                    <RegisterForm openLogin={openLogin}/>
                 </Tab.Pane>
             )
         }
